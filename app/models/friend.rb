@@ -9,6 +9,9 @@
 #  updated_at  :datetime         not null
 #
 
-class Friend < ActiveRecord::Base
-  #has_and_belongs_to_many :location_users
+class FriendShip < ActiveRecord::Base
+  self.table_name = "friends"
+
+  belongs_to :user
+  belongs_to :friend, class_name: "User"
 end

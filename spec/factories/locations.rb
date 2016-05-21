@@ -11,6 +11,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  country     :string(255)
+#  address     :string(255)      not null
 #
 
 FactoryGirl.define do

@@ -12,6 +12,7 @@
 #  confirmation_sent_at   :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  username               :string(255)      not null
 #
 
 require 'rails_helper'

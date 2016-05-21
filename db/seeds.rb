@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 12.times do |i|
-  User.create({ email: "a+#{i+3}@b.c", password: "abcd1234", password_confirmation: "abcd1234" })
+  User.create({ email: "a+#{i+3}@b.c", password: "abcd1234", password_confirmation: "abcd1234", confirmed_at: Date.today })
 end

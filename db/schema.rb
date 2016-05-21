@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521123508) do
+ActiveRecord::Schema.define(version: 20160521154858) do
 
   create_table "friends", force: :cascade do |t|
-    t.integer  "follower_id", limit: 4, null: false
-    t.integer  "followed_id", limit: 4, null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "user_id",    limit: 4, null: false
+    t.integer  "friend_id",  limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "friends", ["followed_id"], name: "index_friends_on_followed_id", using: :btree
-  add_index "friends", ["follower_id", "followed_id"], name: "index_friends_on_follower_id_and_followed_id", unique: true, using: :btree
-  add_index "friends", ["follower_id"], name: "index_friends_on_follower_id", using: :btree
+  add_index "friends", ["friend_id"], name: "index_friends_on_friend_id", using: :btree
+  add_index "friends", ["user_id", "friend_id"], name: "index_friends_on_user_id_and_friend_id", unique: true, using: :btree
+  add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "location_users", force: :cascade do |t|
     t.integer  "user_id",     limit: 4,                 null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20160521123508) do
 
   add_index "locations", ["lat", "lng"], name: "index_locations_on_lat_and_lng", using: :btree
 
+  create_table "shared_locations", force: :cascade do |t|
+    t.integer  "friend_id",        limit: 4, null: false
+    t.integer  "location_user_id", limit: 4, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "shared_locations", ["friend_id"], name: "index_shared_locations_on_friend_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -66,8 +75,9 @@ ActiveRecord::Schema.define(version: 20160521123508) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "friends", "users", column: "followed_id"
-  add_foreign_key "friends", "users", column: "follower_id"
+  add_foreign_key "friends", "users"
+  add_foreign_key "friends", "users", column: "friend_id"
   add_foreign_key "location_users", "locations"
   add_foreign_key "location_users", "users"
+  add_foreign_key "shared_locations", "users", column: "friend_id"
 end

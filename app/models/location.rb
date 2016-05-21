@@ -11,6 +11,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  country     :string(255)
+#  address     :string(255)      not null
 #
 
 class Location < ActiveRecord::Base
@@ -18,5 +19,4 @@ class Location < ActiveRecord::Base
   has_many :location_users
   accepts_nested_attributes_for :location_users
 
-  acts_as_mappable
 end

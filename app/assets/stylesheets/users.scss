@@ -2,15 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.main {
+  width: 95vw;
+  margin: 0 auto;
+}
+
 .map-container {
   margin-top: 70px;
   height: 300px;
+  width: 500px;
 }
 
 #map {
   height: 100%;
 }
 
-#location_name {
+#location_address {
   width: 300px;
 }

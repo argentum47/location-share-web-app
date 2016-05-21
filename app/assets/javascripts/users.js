@@ -82,24 +82,26 @@ var G = window.G = (function() {
                     });
                 });
 
-                let bounds = new google.maps.LatLngBounds();
-                for (let i = 0; i < markers.length; i++) {
-                    bounds.extend(markers[i].getPosition());
-                }
-
-                google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
-                    this.setZoom(map.getZoom()-1);
-
-                    if (this.getZoom() > 15) {
-                        this.setZoom(15);
+                if(markers.length) {
+                    let bounds = new google.maps.LatLngBounds();
+                    for (let i = 0; i < markers.length; i++) {
+                        bounds.extend(markers[i].getPosition());
                     }
-                });
 
-                map.fitBounds(bounds);
+                    google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+                        this.setZoom(map.getZoom()-1);
 
-                markers.map(function(m) {
-                    m.setMap(map);
-                });
+                        if (this.getZoom() > 15) {
+                            this.setZoom(15);
+                        }
+                    });
+
+                    map.fitBounds(bounds);
+
+                    markers.map(function(m) {
+                        m.setMap(map);
+                    });
+                }
             });
         },
     }
