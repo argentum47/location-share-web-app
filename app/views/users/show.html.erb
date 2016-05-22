@@ -5,14 +5,23 @@
 <div class="clearfix">
   <div class="pull-left">
     <% if current_user.id == @user.id %>
-      <%= render 'locations/form', location: @location %>
+      <%= form_for Location.new do |f| %>
+        <div class="form-controls">
+          Enter a Location <%= f.text_field :address %>
+        </div>
+        <%= render 'locations/form', f: f%>
+        <div class="form-controls">
+          <%= label_tag :is_public, "Make Public" %>
+          <%= check_box_tag :is_public %>
+        </div> OR:
+        <div class="form-controls">
+          <%= select_tag :shared_users, options_from_collection_for_select(current_user.all_friends, 'id', 'email'), multiple: true %>
+        </div>
+        <%= f.submit %>
+      <% end %>
     <% end %>
     <div class="locations">
-      <% @locations.each do |l| %>
-        <div class="location" data-address="<%= l.address || '' %>" data-lat="<%= l.lat %>" data-lng="<%= l.lng %>">
-          Address <%= l.address %>
-        </div>
-      <% end %>
+      <%= render @locations, user: @user %>
     </div>
   </div>
 

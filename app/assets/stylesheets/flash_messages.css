@@ -1,0 +1,17 @@
+.alert {
+  padding: 20px;
+  margin: 10px;
+  color: #000;
+
+  &-error {
+    background-color: #FFADAD;
+  }
+
+  &-success {
+    background-color: #419C51;
+  }
+
+  &-info {
+    background-color: #6FBDFF;
+  }
+}

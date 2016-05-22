@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 
-class FriendShip < ActiveRecord::Base
+class Friendship < ActiveRecord::Base
   self.table_name = "friends"
 
   belongs_to :user

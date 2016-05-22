@@ -1,0 +1,26 @@
+<div class="clearfix">
+  <div class="pull-left">
+    <%= form_for @location do |f| %>
+      <%= render 'locations/form', f: f %>
+      <div class="form-controls">
+        <%= label_tag :is_public, "Make Public" %>
+        <%= check_box_tag :is_public, "1", @location_user.is_public %>
+      </div> OR:
+      <div class="form-controls">
+        <%= select_tag :shared_users, options_from_collection_for_select(current_user.all_friends, 'id', 'email', get_selected_users(@location_user)), multiple: true, disabled: @location_user.is_public %>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <div class="map-container pull-right">
+    <div id="map"></div>
+  </div>
+</div>
+
+<script>
+ $(function() {
+   G.loadUserLocation();
+   G.showMarkersOnMap();
+ });
+</script>

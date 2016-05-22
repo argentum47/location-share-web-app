@@ -48,4 +48,4 @@ group :development, :test do
 end
 
 gem 'devise', '4.1.1'
-gem 'geokit-rails', github: 'geokit/geokit-rails'
+gem 'geocoder', '1.3.4'

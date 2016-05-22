@@ -3,11 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @location = current_user.locations.build
-    @locations = if current_user.id == params[:id]
+    @locations = if current_user.id == @user.id
                    current_user.locations
                  else
-                   current_user.viewable_locations(params[:id])
+                   @user.viewable_locations(current_user.id)
                  end
   end
 end

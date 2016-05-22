@@ -3,16 +3,14 @@
 <head>
   <title>Glympse</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= stylesheet_link_tag    '//openlayers.org/en/v3.15.1/css/ol.css' %>
+  <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="site-header text-center">
-    <h1><a href="/">Welcome to Glympse!</a></h1>
-    <span>share location with your friends</span>
-  </div>
+  <%= render 'shared/header' %>
   <div class="main">
+    <%= render 'shared/flash_messages' %>
     <%= yield %>
   </div>
 </body>

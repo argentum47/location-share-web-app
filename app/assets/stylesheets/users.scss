@@ -1,6 +1,9 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body, div, span, ul, li, p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
 
 .pull-left {
   float: left;
@@ -18,13 +21,85 @@
   clear: both;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-inline li {
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+  color: white;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  &.active {
+    background-color: #47AB4B;
+  }
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+
+  .user-settings {
+    text-decoration: underline;
+  }
+}
+
+.site-name {
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.welcome-text {
+  width: 500px;
+  padding: 50px;
+  background-color: #eee;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.notification {
+  position: relative;
+
+  .fa {
+    color: #47AB4B;
+  }
+
+  span {
+    position: absolute;
+    font-size: 14px;
+    top: 3px;
+    right: 1px;
+    font-weight: bold;
+  }
+}
+
 .main {
   width: 95vw;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 .map-container {
-  margin-top: 70px;
   height: 300px;
   width: 500px;
 }
@@ -33,6 +108,14 @@
   height: 100%;
 }
 
-#location_address {
+#location_address, #shared_users {
   width: 300px;
+}
+
+.locations {
+  width: 300px;
+
+  .location {
+    padding: 10px 0;
+  }
 }

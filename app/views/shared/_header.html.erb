@@ -1,0 +1,15 @@
+<div class="navbar">
+  <ul class="list-unstyled list-inline clearfix">
+    <li class="site-name"><a href="/">glympse</a></li>
+    <% if user_signed_in? %>
+      <li class="pull-right"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <li class="pull-right user-settings <%= set_active('registrations', 'edit')%>">
+        <%= link_to name_or_email(current_user), edit_user_registration_path(current_user), title: "edit profile" %>
+      </li>
+      <li class="<%= set_active('users', 'show') %>"><%= link_to "Your Locations", user_path(current_user)  %></li>
+    <% else %>
+      <li class="<%= set_active('registrations', 'new') %>"><%= link_to "Register", new_user_registration_path %></li>
+      <li class="<%= set_active('sessions', 'new') %>"><%= link_to "Login", new_user_session_path %></li>
+    <% end %>
+  </ul>
+</div>

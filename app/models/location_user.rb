@@ -14,5 +14,5 @@ class LocationUser < ActiveRecord::Base
   belongs_to :user, inverse_of: :location_users
   belongs_to :location, inverse_of: :location_users
 
-  # has_and_belongs_to_many :friends
+  has_many :shared_locations
 end
