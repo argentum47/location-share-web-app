@@ -1,10 +1,22 @@
-<div class="welcome-text text-center">
-  <h1>Welcome to Glympse!</h1>
-  <span>share location with your friends</span>
-</div>
-
 <% if user_signed_in? %>
-  Your Friends
-  <hr/>
-  <ul class="list-unstyled"><%= render partial: 'users/user', collection: current_user.friends %></ul>
+  <div class="container clearfix">
+  <div class="locations hidden">
+    <%= render current_user.favourite_locations, user: current_user, no_text: true %>
+  </div>
+  <div class="homepage__map-container pull-left">
+    <div id="map"></div>
+  </div>
+
+  <div class="suggested-friends pull-right">
+    <input type="text" placeholder="search users by name" id="search_users"/>
+    <h4>Suggested Friends</h4>
+    <ul class="suggestions list-unstyled"><%= render partial: 'users/user', collection: current_user.suggested_friends %></ul>
+  </div>
+
+  <script>
+   $(function() {
+     G.loadUserLocation();
+     G.showMarkersOnMap({ disableZoomOnScroll: true });
+   });
+  </script>
 <% end %>

@@ -72,7 +72,9 @@ var G = window.G = (function() {
             }
         },
 
-        showMarkersOnMap: function () {
+        showMarkersOnMap: function (options) {
+            options = options || {};
+
             events.on("map::loaded", function() {
                 markers = ([]).map.call($(".location"), function(l) {
                     return new google.maps.Marker({
@@ -96,6 +98,11 @@ var G = window.G = (function() {
                         }
                     });
 
+                    if(options.disableZoomOnScroll)
+                        map.setOptions({ scrollwheel: false });
+                    else
+                        map.setOptions({ scrollwheel: true });
+
                     map.fitBounds(bounds);
 
                     markers.map(function(m) {
@@ -107,6 +114,9 @@ var G = window.G = (function() {
     }
 })();
 
+$(document).on('input', '#search_users', function() {
+    $.ajax({ url: '/search_users', data: { username: this.value }, dataType: 'script' });
+});
 
 function getGeoCoords() {
     if(!navigator.geolocation) {

@@ -1,0 +1,71 @@
+.site-name {
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+
+  .user-settings {
+    text-decoration: underline;
+  }
+}
+
+.notification {
+  position: relative;
+
+  .fa {
+    color: #47AB4B;
+  }
+
+  span {
+    position: absolute;
+    font-size: 14px;
+    top: 3px;
+    right: 1px;
+    font-weight: bold;
+  }
+}
+
+.main {
+  width: 100vw;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.welcome-text {
+  width: 500px;
+  padding: 50px;
+  color: #000;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.homepage__map-container {
+  height: 72vh;
+  width: 80%;
+
+  margin: 0 auto;
+
+  map {
+    height: 300px;
+  }
+}
+
+.suggested-friends {
+  width: 20%;
+  overflow: auto;
+  padding-left: 20px;
+
+  .suggestions {
+    padding-top: 10px;
+  }
+}

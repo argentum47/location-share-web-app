@@ -1,11 +1,13 @@
 <% if location.id %>
   <div class="location" data-address="<%= location.address || '' %>" data-lat="<%= location.lat %>" data-lng="<%= location.lng %>">
-    <span class="address-text"><%= get_address_for(location) %></span>
-    <br/>
-    <%= link_to "show nearby", location %>
-    <% if user && user.id == current_user.id %>
-      <%= link_to "edit", edit_location_path(location) %>
-      <%= link_to "delete", location_user_path(location), method: :delete %>
+    <% if !no_text %>
+      <span class="address-text"><%= get_address_for(location) %></span>
+      <br/>
+      <%= link_to "show nearby", location %>
+      <% if user && user.id == current_user.id %>
+        <%= link_to "edit", edit_location_path(location) %>
+        <%= link_to "delete", location_user_path(location), method: :delete %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
