@@ -31,6 +31,7 @@ EventEmitter.prototype = {
 };
 
 var events = new EventEmitter();
+var defaultZoom = 13;
 
 var G = window.G = (function() {
     return {
@@ -98,10 +99,13 @@ var G = window.G = (function() {
                         }
                     });
 
-                    if(options.disableZoomOnScroll)
-                        map.setOptions({ scrollwheel: false });
-                    else
-                        map.setOptions({ scrollwheel: true });
+                    let mapOptions = {
+                        scrollwheel: 'disableZoomOnScroll' in options ? options.disableZoomOnScroll : true,
+                        zoom: options.zoom ? options.zoom : defaultZoom,
+                        minZoom: 1
+                    }
+
+                    map.setOptions(mapOptions);
 
                     map.fitBounds(bounds);
 

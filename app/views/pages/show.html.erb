@@ -1,22 +1,33 @@
-<% if user_signed_in? %>
-  <div class="container clearfix">
+<div class="container clearfix">
+  <% unless user_signed_in? %>
+    <h3 class="text-center">glympse share locations with friends</h3>
+  <% end %>
+
   <div class="locations hidden">
-    <%= render current_user.favourite_locations, user: current_user, no_text: true %>
+    <% if user_signed_in? %>
+      <%= render current_user.favourite_locations, user: current_user, no_text: true %>
+    <% else %>
+      <span class="location" data-lat="83.40" data-lng="29.50"></span>
+      <span class="location" data-lat="-83" data-lng="-59"></span>
+    <% end %>
   </div>
-  <div class="homepage__map-container pull-left">
+
+  <div class="homepage__map-container pull-left" id="<%= user_signed_in? ? '' : 'full-width'%>">
     <div id="map"></div>
   </div>
 
-  <div class="suggested-friends pull-right">
-    <input type="text" placeholder="search users by name" id="search_users"/>
-    <h4>Suggested Friends</h4>
-    <ul class="suggestions list-unstyled"><%= render partial: 'users/user', collection: current_user.suggested_friends %></ul>
-  </div>
+  <% if user_signed_in? %>
+    <div class="suggested-friends pull-right">
+      <input type="text" placeholder="search users by name" id="search_users"/>
+      <h4>Suggested Friends</h4>
+      <ul class="suggestions list-unstyled"><%= render partial: 'users/user', collection: current_user.suggested_friends %></ul>
+    </div>
+  <% end %>
 
   <script>
    $(function() {
      G.loadUserLocation();
-     G.showMarkersOnMap({ disableZoomOnScroll: true });
+     G.showMarkersOnMap({ zoom: 1, minZoom: 1, disableZoomOnScroll: true });
    });
   </script>
-<% end %>
+</div>
