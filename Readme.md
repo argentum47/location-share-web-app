@@ -14,7 +14,7 @@ Prequsites
 ------------
 - Some browser with sane es6 support (for `let`, `template strings`)
 
-Before continuing modify the `config/database.yml` and `config/initializers/geocodes.rb`
+Before continuing modify the `config/database.yml` and `config/initializers/geocoder.rb`
 
 
 Starting the application
