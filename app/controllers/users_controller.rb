@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       current_user.friends.pluck(:id) + [current_user.id]
     end
 
-    if params[:username]
+    if params[:username].present?
       @friends = User.where.not(id: friend_ids).where("UPPER(username) LIKE ?", "#{params[:username].upcase}%")
     else
       @friends = current_user.suggested_friends

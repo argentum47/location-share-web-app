@@ -11,10 +11,10 @@ module FriendSuggestions
       results << f.friends.where.not(friends: { friend_id: id })
     end
 
-    results = results.flatten
+    results = results.flatten.take(10)
 
     # add some random active people
-    results << User.includes(:friends).where.not(id: [results.map(&:id), _friends.map(&:id)].flatten).order("friends.updated_at desc").uniq.take(10)
+    results << User.includes(:friends).where.not(id: [results.map(&:id), _friends.map(&:id)].flatten).order("friends.updated_at desc").uniq.take(5)
     results.flatten
   end
 end
